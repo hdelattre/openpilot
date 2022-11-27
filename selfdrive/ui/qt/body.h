@@ -23,12 +23,16 @@ class BodyWindow : public QWidget {
 public:
   BodyWindow(QWidget* parent = 0);
 
+  void setFace(const QString& face_img_path);
+  const QString& getFaceImagePath() const;
+
 private:
   bool charging = false;
   uint64_t last_button = 0;
   FirstOrderFilter fuel_filter;
-  QLabel *face;
+  QLabel *face, *image_label;
   QMovie *awake, *sleep;
+  QString image_path;
   RecordButton *btn;
   void paintEvent(QPaintEvent*) override;
 

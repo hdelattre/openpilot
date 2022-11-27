@@ -68,6 +68,11 @@ BodyWindow::BodyWindow(QWidget *parent) : fuel_filter(1.0, 5., 1. / UI_FREQ), QW
   sleep = new QMovie("../assets/body/sleep.gif");
   sleep->setCacheMode(QMovie::CacheAll);
 
+  // image
+  image_label = new QLabel();
+  image_label->setAlignment(Qt::AlignCenter);
+  layout->addWidget(image_label);
+
   // record button
   btn = new RecordButton(this);
   vlayout->addWidget(btn, 0, Qt::AlignBottom | Qt::AlignRight);
@@ -158,4 +163,13 @@ void BodyWindow::updateState(const UIState &s) {
   }
 
   update();
+}
+
+void BodyWindow::setFace(const QString& face_img_path) {
+  image_path = face_img_path;
+  image_label->setPixmap(QPixmap(image_path).scaledToHeight(1024, Qt::SmoothTransformation));
+}
+
+const QString& BodyWindow::getFaceImagePath() const {
+  return image_path;
 }

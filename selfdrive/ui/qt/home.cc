@@ -1,4 +1,5 @@
 #include "selfdrive/ui/qt/home.h"
+#include "common/util.h"
 
 #include <QHBoxLayout>
 #include <QMouseEvent>
@@ -55,6 +56,7 @@ void HomeWindow::updateState(const UIState &s) {
   if (onroad->isVisible() && !body->isEnabled() && sm["carParams"].getCarParams().getNotCar()) {
     body->setEnabled(true);
     slayout->setCurrentWidget(body);
+    body->setFace("../assets/body/face.png");
   }
 }
 

@@ -56,7 +56,12 @@ void HomeWindow::updateState(const UIState &s) {
   if (onroad->isVisible() && !body->isEnabled() && sm["carParams"].getCarParams().getNotCar()) {
     body->setEnabled(true);
     slayout->setCurrentWidget(body);
-    body->setFace("../assets/body/face.png");
+  }
+
+  if (body->isEnabled() && util::file_exists("../assets/body/face/face.png"))
+  {
+    body->setFace("../assets/body/face/face.png");
+    util::remove_files_in_dir("../assets/body/face");
   }
 }
 

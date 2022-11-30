@@ -32,6 +32,7 @@ private:
   FirstOrderFilter fuel_filter;
   QLabel *face, *image_label;
   QMovie *awake, *sleep;
+  QPixmap image_awake, image_sleep;
   QString image_path;
   RecordButton *btn;
   void paintEvent(QPaintEvent*) override;

@@ -146,10 +146,21 @@ void BodyWindow::updateState(const UIState &s) {
 
   // TODO: use carState.standstill when that's fixed
   const bool standstill = std::abs(cs.getVEgo()) < 0.01;
-  QMovie *m = standstill ? sleep : awake;
-  if (m != face->movie()) {
-    face->setMovie(m);
-    face->movie()->start();
+
+  if (getFaceImagePath() != "") {
+    if (standstill) {
+      image_label->setPixmap(image_sleep);
+    }
+    else {
+      image_label->setPixmap(image_awake);
+    }
+  }
+  else {
+    QMovie *m = standstill ? sleep : awake;
+    if (m != face->movie()) {
+      face->setMovie(m);
+      face->movie()->start();
+    }
   }
 
   // update record button state
@@ -167,7 +178,9 @@ void BodyWindow::updateState(const UIState &s) {
 
 void BodyWindow::setFace(const QString& face_img_path) {
   image_path = face_img_path;
-  image_label->setPixmap(QPixmap(image_path).scaledToHeight(1024, Qt::SmoothTransformation));
+  image_awake = QPixmap(image_path).scaledToHeight(1024, Qt::SmoothTransformation);
+  image_sleep = QPixmap(image_path).scaledToHeight(1024, Qt::SmoothTransformation);
+  image_label->setPixmap(image_awake);
 }
 
 const QString& BodyWindow::getFaceImagePath() const {

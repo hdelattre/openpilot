@@ -61,7 +61,7 @@ void HomeWindow::updateState(const UIState &s) {
   if (body->isEnabled() && util::file_exists("../assets/body/face/face.png"))
   {
     body->setFace("../assets/body/face/face.png");
-    util::remove_files_in_dir("../assets/body/face");
+    //util::remove_files_in_dir("../assets/body/face");
   }
 }
 
